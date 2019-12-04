@@ -18,4 +18,4 @@ namespace property
 } // namespace property
 
 
-#endif /* __LIBSCRAPE_DATA_INDEX_OUT_OF_BOUNDS_EXCEPTION_H__ */
+#endif /* __LIBSCRAPE_INDEX_OUT_OF_BOUNDS_ERROR_H__ */

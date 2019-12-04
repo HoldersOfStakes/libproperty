@@ -17,7 +17,9 @@ include_directories(
 set(LIBRARY_SOURCES
   src/property/raw_data.cpp
   src/property/list.cpp
+  src/property/map.cpp
   src/property/index_out_of_bounds_error.cpp
+  src/property/key_unknown_error.cpp
   src/property/data.cpp)
 
 add_library(${PROJECT_NAME}
@@ -45,3 +47,4 @@ endmacro()
 
 add_single_test(value_test)
 add_single_test(list_test)
+add_single_test(map_test)

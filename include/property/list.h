@@ -1,5 +1,5 @@
-#ifndef __LIBPROPERTY_DATA_LIST_H__
-#define __LIBPROPERTY_DATA_LIST_H__
+#ifndef __LIBPROPERTY_LIST_H__
+#define __LIBPROPERTY_LIST_H__
 
 
 // System
@@ -43,4 +43,4 @@ namespace property
 } // namespace property
 
 
-#endif /* __LIBPROPERTY_DATA_LIST_H__*/
+#endif /* __LIBPROPERTY_LIST_H__*/

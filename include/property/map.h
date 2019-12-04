@@ -25,7 +25,7 @@ namespace property
     bool equals(std::shared_ptr<RawData> other_data) override;
 
     void set(std::string key, std::shared_ptr<RawData> data);
-    void isMember(std::string key);
+    bool isMember(std::string key);
     void clear();
 
     void remove(std::string key);

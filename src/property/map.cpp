@@ -11,15 +11,23 @@ namespace property
 
       if(map->size() == this->size())
       {
-        /*for(unsigned int i = 0; i < this->size(); ++i)
+        for(auto it = map->begin(); it != map->end(); ++it)
         {
-          if(!this->at(i)->equals(list->at(i)))
+          if(!this->isMember(it->first))
           {
             return false;
           }
         }
 
-        return true;*/
+        for(auto it = this->begin(); it != this->end(); ++it)
+        {
+          if(!map->isMember(it->first))
+          {
+            return false;
+          }
+        }
+
+        return true;
       }
     }
 
@@ -29,6 +37,11 @@ namespace property
   void Map::set(std::string key, std::shared_ptr<RawData> data)
   {
     children_[key] = data;
+  }
+
+  bool Map::isMember(std::string key)
+  {
+    return children_.find(key) != children_.end();
   }
 
   void Map::clear()

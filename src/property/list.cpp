@@ -3,6 +3,29 @@
 
 namespace property
 {
+  bool List::equals(std::shared_ptr<RawData> other_data)
+  {
+    if(other_data != nullptr)
+    {
+      std::shared_ptr<List> list = other_data->as<List>();
+
+      if(list->size() == this->size())
+      {
+        for(unsigned int i = 0; i < this->size(); ++i)
+        {
+          if(!this->at(i)->equals(list->at(i)))
+          {
+            return false;
+          }
+        }
+
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   void List::add(std::shared_ptr<RawData> data)
   {
     children_.emplace_back(data);

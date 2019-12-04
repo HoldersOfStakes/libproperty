@@ -24,6 +24,18 @@ namespace property
 
     ~Value() = default;
 
+    bool equals(std::shared_ptr<RawData> other_data) override
+    {
+      if(other_data != nullptr)
+      {
+        std::shared_ptr<Value<TType>> value = other_data->as<Value<TType>>();
+
+        return value->getValue() == typed_value_;
+      }
+
+      return false;
+    }
+
     TType getValue()
     {
       return typed_value_;

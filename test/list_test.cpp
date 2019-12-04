@@ -6,7 +6,7 @@
 #include <catch2/catch.hpp>
 
 // libscrape
-#include <property/raw_data.h>
+#include <property/value.hpp>
 #include <property/list.h>
 
 
@@ -15,8 +15,9 @@ TEST_CASE("Data gets added to list", "[list]")
   SECTION("When one entry gets added to the list, exactly that entry is in the list.")
   {
     // Arrange.
+    const int TEST_INT = 5;
     std::shared_ptr<property::List> data_list = std::make_shared<property::List>();
-    std::shared_ptr<property::RawData> data_content_1 = std::make_shared<property::RawData>();
+    std::shared_ptr<property::Value<int>> data_content_1 = std::make_shared<property::Value<int>>();
 
     // Act.
     data_list->add(data_content_1);
@@ -29,9 +30,10 @@ TEST_CASE("Data gets added to list", "[list]")
   SECTION("When two entries get added to the list, exactly those entries are in the list in the correct order.")
   {
     // Arrange.
+    const int TEST_INT = 5;
     std::shared_ptr<property::List> data_list = std::make_shared<property::List>();
-    std::shared_ptr<property::RawData> data_content_1 = std::make_shared<property::RawData>();
-    std::shared_ptr<property::RawData> data_content_2 = std::make_shared<property::RawData>();
+    std::shared_ptr<property::Value<int>> data_content_1 = std::make_shared<property::Value<int>>();
+    std::shared_ptr<property::Value<int>> data_content_2 = std::make_shared<property::Value<int>>();
 
     // Act.
     data_list->add(data_content_1);
@@ -53,8 +55,9 @@ TEST_CASE("List gets cleared", "[list]")
   SECTION("When an entry gets added to the list and the list gets cleared, the list is empty.")
   {
     // Arrange.
+    const int TEST_INT = 5;
     std::shared_ptr<property::List> data_list = std::make_shared<property::List>();
-    std::shared_ptr<property::RawData> data_content_1 = std::make_shared<property::RawData>();
+    std::shared_ptr<property::Value<int>> data_content_1 = std::make_shared<property::Value<int>>();
 
     data_list->add(data_content_1);
 

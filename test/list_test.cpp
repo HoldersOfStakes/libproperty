@@ -10,7 +10,7 @@
 #include <property/list.h>
 
 
-TEST_CASE("Data gets added to list", "[data/list]")
+TEST_CASE("Data gets added to list", "[list]")
 {
   SECTION("When one entry gets added to the list, exactly that entry is in the list.")
   {
@@ -48,7 +48,7 @@ TEST_CASE("Data gets added to list", "[data/list]")
   }
 }
 
-TEST_CASE("List gets cleared", "[data/list]")
+TEST_CASE("List gets cleared", "[list]")
 {
   SECTION("When an entry gets added to the list and the list gets cleared, the list is empty.")
   {
@@ -66,7 +66,7 @@ TEST_CASE("List gets cleared", "[data/list]")
   }
 }
 
-TEST_CASE("Accessing elements by index", "[data/list]")
+TEST_CASE("Accessing elements by index", "[list]")
 {
   SECTION("When no entry is contained in a list and an element is accessed by index, an exception is thrown.")
   {

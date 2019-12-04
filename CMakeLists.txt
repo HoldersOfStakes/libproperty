@@ -43,4 +43,5 @@ macro(add_single_test testname)
     COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${testname})
 endmacro()
 
+add_single_test(value_test)
 add_single_test(list_test)

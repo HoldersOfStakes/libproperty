@@ -31,7 +31,7 @@ namespace property
 
     bool operator==(std::shared_ptr<RawData> other_data)
     {
-      std::shared_ptr<Value<TType>> other_typed_value = std::dynamic_pointer_cast<Value<TType>>(other_Data);
+      std::shared_ptr<Value<TType>> other_typed_value = std::dynamic_pointer_cast<Value<TType>>(other_data);
 
       if(other_typed_value != nullptr)
       {

@@ -15,7 +15,7 @@ namespace property
   {
   public:
     Data();
-    virtual ~Data();
+    virtual ~Data() = default;
 
   private:
     std::shared_ptr<RawData> raw_data_;

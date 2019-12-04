@@ -1,0 +1,62 @@
+language: cpp
+sudo: required
+dist: bionic
+
+jobs:
+ include:
+  - name: "Build on Linux/gcc"
+    os: linux
+    compiler: gcc
+    script:
+     - cd ${TRAVIS_BUILD_DIR}
+     - mkdir build && cd build
+     - cmake ..
+     - make
+     - make test
+  - name: "Build on Linux/clang"
+    os: linux
+    compiler: clang
+    script:
+     - cd ${TRAVIS_BUILD_DIR}
+     - mkdir build && cd build
+     - cmake ..
+     - make
+     - make test
+  - name: "Build on OS X/gcc"
+    os: osx
+    compiler: gcc
+    script:
+     - cd ${TRAVIS_BUILD_DIR}
+     - mkdir build && cd build
+     - cmake ..
+     - make
+     - make test
+  - name: "Build on OS X/clang"
+    os: osx
+    compiler: clang
+    script:
+     - cd ${TRAVIS_BUILD_DIR}
+     - mkdir build && cd build
+     - cmake ..
+     - make
+     - make test
+  - name: "Run clang-tidy"
+    os: linux
+    compiler: gcc
+    script:
+     - cd ${TRAVIS_BUILD_DIR}
+     - mkdir build && cd build
+     - cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+     - make
+     - find ../src -name "*.h" -o -name "*.cpp" -print | xargs -I{} clang-tidy -checks=*,-performance-unnecessary-value-param,-cppcoreguidelines-pro-bounds-constant-array-index,-cppcoreguidelines-pro-bounds-pointer-arithmetic,-modernize-pass-by-value,-cert-err58-cpp,-modernize-use-auto,-cppcoreguidelines-pro-type-union-access,-cert-err60-cpp,-cppcoreguidelines-pro-type-vararg,-hicpp-vararg,-fuchsia-statically-constructed-objects,-hicpp-signed-bitwise,-fuchsia-default-arguments -p=./ {} > tidy_output.txt
+     - find ../include -name "*.h" -o -name "*.cpp" -print | xargs -I{} clang-tidy -checks=*,-performance-unnecessary-value-param,-cppcoreguidelines-pro-bounds-constant-array-index,-cppcoreguidelines-pro-bounds-pointer-arithmetic,-modernize-pass-by-value,-cert-err58-cpp,-modernize-use-auto,-cppcoreguidelines-pro-type-union-access,-cert-err60-cpp,-cppcoreguidelines-pro-type-vararg,-hicpp-vararg,-fuchsia-statically-constructed-objects,-hicpp-signed-bitwise,-fuchsia-default-arguments -p=./ {} >> tidy_output.txt
+     - cat tidy_output.txt
+     - |
+       if [[ -n $(grep "warning: " tidy_output.txt) ]] || [[ -n $(grep "error: " tidy_output.txt) ]]; then
+           echo "You must pass the clang tidy checks."
+           echo ""
+           grep --color -E '^|warning: |error: ' tidy_output.txt
+           exit -1;
+       else
+           echo -e "\033[1;32m\xE2\x9C\x93 passed\033[0m";
+       fi

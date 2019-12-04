@@ -11,17 +11,17 @@ namespace property
 
       if(map->size() == this->size())
       {
-        for(auto it = map->begin(); it != map->end(); ++it)
+        for(std::pair<std::string, std::shared_ptr<RawData>> pair : *map)
         {
-          if(!this->isMember(it->first))
+          if(!this->isMember(pair.first))
           {
             return false;
           }
         }
 
-        for(auto it = this->begin(); it != this->end(); ++it)
+        for(std::pair<std::string, std::shared_ptr<RawData>> pair : *this)
         {
-          if(!map->isMember(it->first))
+          if(!map->isMember(pair.first))
           {
             return false;
           }

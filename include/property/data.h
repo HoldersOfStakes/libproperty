@@ -14,7 +14,7 @@ namespace property
   class Data
   {
   public:
-    Data();
+    Data() = default;
     virtual ~Data() = default;
 
   private:

@@ -50,7 +50,7 @@ namespace property
     return false;
   }
 
-  void Binary::set(char* data, ssize_t length)
+  void Binary::set(const char* data, ssize_t length)
   {
     clear();
 
@@ -60,12 +60,12 @@ namespace property
     memcpy(data_, data, length);
   }
 
-  void Binary::set(const char* data, ssize_t length)
+  void Binary::set(char* data, ssize_t length)
   {
-    set(const_cast<char*>(data), length);
+    set(static_cast<const char*>(data), length);
   }
 
-  void Binary::append(char* data, ssize_t length)
+  void Binary::append(const char* data, ssize_t length)
   {
     if(data_ == nullptr)
     {
@@ -84,9 +84,9 @@ namespace property
     }
   }
 
-  void Binary::append(const char* data, ssize_t length)
+  void Binary::append(char* data, ssize_t length)
   {
-    append(const_cast<char*>(data), length);
+    append(static_cast<const char*>(data), length);
   }
 
   void Binary::clear()

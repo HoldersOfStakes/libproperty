@@ -3,6 +3,18 @@
 
 namespace property
 {
+  std::shared_ptr<RawData> List::copy()
+  {
+    std::shared_ptr<List> list_copy = std::make_shared<List>();
+
+    for(std::shared_ptr<RawData> raw_data_child : children_)
+    {
+      list_copy->add(raw_data_child->copy());
+    }
+
+    return list_copy;
+  }
+
   bool List::equals(std::shared_ptr<RawData> other_data)
   {
     if(other_data != nullptr)

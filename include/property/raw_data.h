@@ -14,6 +14,7 @@ namespace property
     RawData() = default;
     virtual ~RawData() = default;
 
+    virtual std::shared_ptr<RawData> copy() = 0;
     virtual bool equals(std::shared_ptr<RawData> other_data) = 0;
 
     template<class TType>

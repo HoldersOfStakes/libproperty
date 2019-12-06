@@ -36,6 +36,11 @@ namespace property
     clear();
   }
 
+  std::shared_ptr<RawData> Binary::copy()
+  {
+    return std::make_shared<Binary>(data_, length_);
+  }
+
   bool Binary::equals(std::shared_ptr<RawData> other_data)
   {
     if(other_data != nullptr)

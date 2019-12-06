@@ -22,6 +22,7 @@ namespace property
     Map() = default;
     ~Map() = default;
 
+    std::shared_ptr<RawData> copy() override;
     bool equals(std::shared_ptr<RawData> other_data) override;
 
     void set(std::string key, std::shared_ptr<RawData> data);

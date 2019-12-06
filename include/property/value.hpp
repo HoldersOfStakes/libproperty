@@ -24,6 +24,11 @@ namespace property
 
     ~Value() = default;
 
+    std::shared_ptr<RawData> copy() override
+    {
+      return std::make_shared<Value<TType>>(typed_value_);
+    }
+
     bool equals(std::shared_ptr<RawData> other_data) override
     {
       if(other_data != nullptr)

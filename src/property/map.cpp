@@ -3,6 +3,18 @@
 
 namespace property
 {
+  std::shared_ptr<RawData> Map::copy()
+  {
+    std::shared_ptr<Map> map_copy = std::make_shared<Map>();
+
+    for(std::pair<std::string, std::shared_ptr<RawData>> pair : *this)
+    {
+      map_copy->set(pair.first, pair.second);
+    }
+
+    return map_copy;
+  }
+
   bool Map::equals(std::shared_ptr<RawData> other_data)
   {
     if(other_data != nullptr)

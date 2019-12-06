@@ -21,6 +21,7 @@ namespace property
     Binary(const char* data, ssize_t length);
     ~Binary();
 
+    std::shared_ptr<RawData> copy() override;
     bool equals(std::shared_ptr<RawData> other_data) override;
 
     void set(char* data, ssize_t length);

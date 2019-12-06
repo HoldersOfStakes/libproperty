@@ -20,8 +20,7 @@ set(LIBRARY_SOURCES
   src/property/map.cpp
   src/property/binary.cpp
   src/property/index_out_of_bounds_error.cpp
-  src/property/key_unknown_error.cpp
-  src/property/data.cpp)
+  src/property/key_unknown_error.cpp)
 
 add_library(${PROJECT_NAME}
   ${LIBRARY_SOURCES})

@@ -48,15 +48,4 @@ jobs:
      - mkdir build && cd build
      - cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
      - make
-     - find ../src -name "*.h" -o -name "*.cpp" -print | xargs -I{} clang-tidy -checks=*,-performance-unnecessary-value-param,-cppcoreguidelines-pro-bounds-constant-array-index,-cppcoreguidelines-pro-bounds-pointer-arithmetic,-modernize-pass-by-value,-cert-err58-cpp,-modernize-use-auto,-cppcoreguidelines-pro-type-union-access,-cert-err60-cpp,-cppcoreguidelines-pro-type-vararg,-hicpp-vararg,-fuchsia-statically-constructed-objects,-hicpp-signed-bitwise,-fuchsia-default-arguments,-cppcoreguidelines-owning-memory,-cppcoreguidelines-pro-type-const-cast -p=./ {} > tidy_output.txt
-     - find ../include -name "*.h" -o -name "*.cpp" -print | xargs -I{} clang-tidy -checks=*,-performance-unnecessary-value-param,-cppcoreguidelines-pro-bounds-constant-array-index,-cppcoreguidelines-pro-bounds-pointer-arithmetic,-modernize-pass-by-value,-cert-err58-cpp,-modernize-use-auto,-cppcoreguidelines-pro-type-union-access,-cert-err60-cpp,-cppcoreguidelines-pro-type-vararg,-hicpp-vararg,-fuchsia-statically-constructed-objects,-hicpp-signed-bitwise,-fuchsia-default-arguments,-cppcoreguidelines-owning-memory,-cppcoreguidelines-pro-type-const-cast -p=./ {} >> tidy_output.txt
-     - cat tidy_output.txt
-     - |
-       if [[ -n $(grep "warning: " tidy_output.txt) ]] || [[ -n $(grep "error: " tidy_output.txt) ]]; then
-           echo "You must pass the clang tidy checks."
-           echo ""
-           grep --color -E '^|warning: |error: ' tidy_output.txt
-           exit -1;
-       else
-           echo -e "\033[1;32m\xE2\x9C\x93 passed\033[0m";
-       fi
+     - ./../scripts/run_clang_tidy.sh

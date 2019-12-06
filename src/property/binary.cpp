@@ -10,7 +10,7 @@ namespace property
   }
 
   Binary::Binary(const Binary& other)
-    : RawData()
+    : RawData(other)
   {
     data_ = new char[other.length_];
     memcpy(data_, other.data_, other.length_);

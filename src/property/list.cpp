@@ -7,7 +7,7 @@ namespace property
   {
     std::shared_ptr<List> list_copy = std::make_shared<List>();
 
-    for(std::shared_ptr<RawData> raw_data_child : children_)
+    for(const std::shared_ptr<RawData>& raw_data_child : children_)
     {
       list_copy->add(raw_data_child->copy());
     }

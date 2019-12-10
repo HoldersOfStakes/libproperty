@@ -56,6 +56,28 @@ namespace property
       return false;
     }
 
+    template<typename TValueType>
+    TValueType getValueOrDefaultAt(std::string key, TValueType default_value)
+    {
+      if(isMember(key))
+      {
+        std::shared_ptr<Value<TValueType>> value_object = std::dynamic_pointer_cast<Value<TValueType>>(at(key));
+
+        if(value_object != nullptr)
+        {
+          return value_object->getValue();
+        }
+      }
+
+      return default_value;
+    }
+
+    template<typename TValueType>
+    TValueType getValueAt(std::string key)
+    {
+      return getValueOrDefaultAt(key, TValueType());
+    }
+
   private:
     std::map<std::string, std::shared_ptr<RawData>> children_;
   };

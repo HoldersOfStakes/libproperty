@@ -9,6 +9,7 @@
 
 // Private
 #include <property/raw_data.h>
+#include <property/value.hpp>
 #include <property/key_unknown_error.h>
 
 
@@ -38,6 +39,22 @@ namespace property
     iterator end();
 
     std::shared_ptr<RawData> at(std::string key);
+
+    template<typename TValueType>
+    bool equalsValueAt(std::string key, TValueType value)
+    {
+      if(isMember(key))
+      {
+        std::shared_ptr<Value<TValueType>> value_object = std::dynamic_pointer_cast<Value<TValueType>>(at(key));
+
+        if(value_object != nullptr)
+        {
+          return value_object->getValue() == value;
+        }
+      }
+
+      return false;
+    }
 
   private:
     std::map<std::string, std::shared_ptr<RawData>> children_;

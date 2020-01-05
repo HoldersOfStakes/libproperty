@@ -95,4 +95,21 @@ namespace property
 
     return children_[key];
   }
+
+  std::string Map::toString()
+  {
+    std::stringstream sts;
+
+    for(std::pair<std::string, std::shared_ptr<RawData>> pair : *this)
+    {
+      if(!sts.str().empty())
+      {
+	sts << ", ";
+      }
+
+      sts << pair.first << ": " << pair.second;
+    }
+
+    return "{" + sts.str() + "}";
+  }
 } // namespace property

@@ -2,6 +2,9 @@
 #define __LIBPROPERTY_VALUE_HPP__
 
 
+// System
+#include <sstream>
+
 // Private
 #include <property/raw_data.h>
 
@@ -56,6 +59,14 @@ namespace property
       }
 
       return false;
+    }
+
+    std::string toString() override
+    {
+      std::stringstream sts;
+      sts << typed_value_;
+
+      return sts.str();
     }
 
   private:

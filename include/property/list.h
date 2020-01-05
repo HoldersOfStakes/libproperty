@@ -6,6 +6,7 @@
 #include <iterator>
 #include <list>
 #include <memory>
+#include <sstream>
 
 // Private
 #include <property/raw_data.h>
@@ -37,6 +38,8 @@ namespace property
     iterator end();
 
     std::shared_ptr<RawData> at(unsigned int index);
+
+    std::string toString() override;
 
   private:
     std::list<std::shared_ptr<RawData>> children_;

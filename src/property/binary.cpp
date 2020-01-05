@@ -113,4 +113,9 @@ namespace property
   {
     return data_;
   }
+
+  std::string Binary::toString()
+  {
+    return "<binary of length " + std::to_string(length_) + ">";
+  }
 } // namespace property

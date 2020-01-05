@@ -4,6 +4,7 @@
 
 // System
 #include <memory>
+#include <ostream>
 
 
 namespace property
@@ -27,6 +28,15 @@ namespace property
     std::shared_ptr<TType> as()
     {
       return std::dynamic_pointer_cast<TType>(this->shared_from_this());
+    }
+
+    virtual std::string toString() = 0;
+
+    friend std::ostream& operator<<(std::ostream& out, std::shared_ptr<RawData> val)
+    {
+      out << val->toString();
+
+      return out;
     }
   };
 } // namespace property

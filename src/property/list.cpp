@@ -85,4 +85,21 @@ namespace property
 
     return *it;
   }
+
+  std::string List::toString()
+  {
+    std::stringstream sts;
+
+    for(const std::shared_ptr<RawData>& raw_data_child : children_)
+    {
+      if(!sts.str().empty())
+      {
+	sts << ", ";
+      }
+
+      sts << raw_data_child;
+    }
+
+    return "[" + sts.str() + "]";
+  }
 } // namespace property

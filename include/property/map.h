@@ -6,6 +6,7 @@
 #include <iterator>
 #include <map>
 #include <memory>
+#include <sstream>
 
 // Private
 #include <property/raw_data.h>
@@ -77,6 +78,8 @@ namespace property
     {
       return getValueOrDefaultAt(key, TValueType());
     }
+
+    std::string toString() override;
 
   private:
     std::map<std::string, std::shared_ptr<RawData>> children_;

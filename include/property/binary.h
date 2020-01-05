@@ -34,6 +34,8 @@ namespace property
 
     const char* getData() const;
 
+    std::string toString() override;
+
   private:
     char* data_;
     ssize_t length_;

@@ -107,7 +107,17 @@ namespace property
 	sts << ", ";
       }
 
-      sts << pair.first << ": " << pair.second;
+      sts << "\"" << pair.first << "\"" << ": ";
+
+      if(std::dynamic_pointer_cast<Value<std::string>>(pair.second) != nullptr ||
+	 std::dynamic_pointer_cast<Value<char*>>(pair.second) != nullptr)
+      {
+	sts << "\"" << pair.second << "\"";
+      }
+      else
+      {
+	sts << pair.second;
+      }
     }
 
     return "{" + sts.str() + "}";

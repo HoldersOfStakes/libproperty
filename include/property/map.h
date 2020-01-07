@@ -22,7 +22,6 @@ namespace property
     typedef std::map<std::string, std::shared_ptr<RawData>>::iterator iterator;
 
     Map() = default;
-    ~Map() = default;
 
     std::shared_ptr<RawData> copy() override;
     bool equals(std::shared_ptr<RawData> other_data) override;
